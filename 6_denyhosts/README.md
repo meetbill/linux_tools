@@ -29,6 +29,7 @@
 * PermitRootLogin no #禁止root用户登录
 * PermitEmptyPasswords no #禁止空密码登陆
 * Protocol 2 #禁止使用版本1协议，因为其存在设计缺陷，很容易使密码被黑掉。
+
 ### 修改sshd服务器的配置文件/etc/ssh/sshd_config的读写权限，
 
 对所有非root用户设置只读权限，防止非授权用户修改sshd服务的安全设置。
