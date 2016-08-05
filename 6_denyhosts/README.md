@@ -3,8 +3,9 @@
 
 ### ssh暴力破解检测方法
 
+输出尝试密码失败IP列表
 ```
-# cat /var/log/secure | awk '/Failed/{print $(NF-3)}' | sort | uniq -c | awk '{print $2" = "$1;}'
+# cat /var/log/secure | awk '/Failed/{print $(NF-3)}' | sort | uniq -c | awk '{print $2" = "$1;}'| sort -n -k 2 -t = -r
 ```
 
 ### ssh防暴力破解方法
@@ -14,7 +15,13 @@
 原理就是定时检查/var/log/secure中尝试密码登陆IP，超过10次后，将此IP放到/etc/hosts.deny中，禁止ssh登陆
 
 通过crontab来执行，每天的1点0分执行一次。
+
 0 1 * * * sh /root/bin/denyhosts.sh
+
+下载方式
+```
+#curl -o denyhosts.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/6_denyhosts/denyhosts.sh
+```
 
 (2)DenyHosts
 
@@ -53,3 +60,14 @@ chmod 644 /etc/ssh/sshd_config
 注意：系统对上述两个文件的判断顺序是先检查hosts.allow文件再查看hosts.deny文件
 
 ### 尽量关闭一些系统不需要的启动服务
+
+## 其他
+
+检测用户登录脚本
+```
+sh login.sh
+```
+下载方法
+```
+#curl -o denyhosts.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/6_denyhosts/login.sh
+```
