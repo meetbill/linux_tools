@@ -65,9 +65,10 @@ chmod 644 /etc/ssh/sshd_config
 
 检测用户登录脚本
 ```
-sh login.sh
+sh login_ip.sh
 ```
 下载方法
 ```
-#curl -o denyhosts.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/6_denyhosts/login.sh
+#curl -o login.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/6_denyhosts/login.sh
+#curl -o login_ip.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/6_denyhosts/login_ip.sh
 ```
