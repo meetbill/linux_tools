@@ -2,7 +2,7 @@
 
 下载方式
 ```
-#curl -o denyhosts.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/7_audit_action/audit_action.sh
+#curl -o audit_action.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/7_audit_action/audit_action.sh
 ```
 ### 提示
 

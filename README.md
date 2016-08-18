@@ -6,6 +6,7 @@
 * 4_linux_iptables 配置iptables
 * 5_change_hostname 对hostname进行修改
 * 6_denyhosts 简单防止ssh暴力破解脚本
+* 7_audit_action linux操作审计
 
 ## 参加步骤
 
