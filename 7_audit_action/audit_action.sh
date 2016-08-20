@@ -19,7 +19,6 @@ if [[ `cat ${PATHNAME} | grep ${FINDNAME} | wc -l` < 1 ]]; then
 cat >> ${PATHNAME} <<"EOF"
 export HISTORY_FILE=/var/log/Command_history.log
 export PROMPT_COMMAND='{ date "+%y-%m-%d %T ##### $(who am i |awk "{print \$1\" \"\$2\" \"\$5}")  #### $(history 1 | { read x cmd; echo "$cmd"; })"; } >>${HISTORY_FILE}'
-ulimit -SHn 65535 
 EOF
 else
       exit 0 
