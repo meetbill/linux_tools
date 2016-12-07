@@ -7,6 +7,8 @@
 * 5_change_hostname 对hostname进行修改
 * 6_denyhosts 简单防止ssh暴力破解脚本
 * 7_audit_action linux操作审计
+* 8_rm 开启 linux 回收站
+* 9_screen 开启 screen 状态栏
 
 ## 参加步骤
 
