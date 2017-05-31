@@ -29,9 +29,8 @@ echo "alias rm=/bin/rmtrash.sh" >>/etc/bashrc
 
 ### 使用  
 rm -h  
-Usage1: rmtrash.sh file1 [file2] [dir3] [....] delete the files or dirs,and mv them to the rmtrash recycle bin   
-Usage2: rm         file1 [file2] [dir3] [....] delete the files or dirs,and mv them to the rmtrash recycle bin  
-        rm is alias to rmtrash.sh.  
+Usage: rm         file1 [file2] [dir3] [....] delete the files or dirs,and mv them to the rmtrash recycle bin  
+       rm is alias to rmtrash.sh.  
 options:  
 	-f  mv one or more files to the rmtrash recycle bin  
 	-r  mv one or more files to the rmtrash recycle bin  

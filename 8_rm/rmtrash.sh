@@ -8,6 +8,13 @@
 ### rmtrash,rm command line recycle bin for linux and mac osx.
 ### rmtrash 是linux和mac下命令行版本rm的回收站，安装后对用户透明，符合正常使用rm的习惯(支持rm -fr file哦)，有了他再也不怕rm时候手颤抖了。
 
+#####################################################################################
+# 更新说明:
+# 1.0.2 : 修复rm -e 清空回收站时无法清空.开头的隐藏文件
+#
+#
+#####################################################################################
+
 ###trash目录define
 realrm="/bin/rm"
 trash_dir=~/.rmtrash/
@@ -48,9 +55,9 @@ fi
 ###usage function
 rm_usage () {
 	cat <<EOF
-version:1.0.1
-Usage2: rm  file1 [file2] [dir3] [....] delete the files or dirs,and mv them to the rmtrash recycle  bin
-        rm is alias to `basename $0`.
+version:1.0.2
+Usage: rm  file1 [file2] [dir3] [....] delete the files or dirs,and mv them to the rmtrash recycle  bin
+       rm is alias to `basename $0`.
 options:
 	-f  mv one or more files to the rmtrash recycle bin
 	-r  mv one or more files to the rmtrash recycle bin
@@ -172,9 +179,14 @@ rm_empty () {
 	else
 		echo 输入非法 && exit
 	fi
-	/bin/rm -fr ${trash_dir}* && \
-	echo >$trash_log && \
-	echo -e "\033[31m\033[05m The trash bin has been emptyed\033[0m"
+    if [[ -d ${trash_dir}  ]]
+    then
+	    /bin/rm -fr ${trash_dir} && \
+	    echo >$trash_log && \
+	    echo -e "\033[31m\033[05m The trash bin has been emptyed\033[0m"
+    else
+        echo "trash_dir is not exists"
+    fi
 }
 
 ###rm delete function
