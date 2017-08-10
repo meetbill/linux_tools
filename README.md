@@ -1,14 +1,21 @@
 # linux_tools
 
-* 1_parted_mkfs 批量对硬盘进行分区和格式化
-* 2_raid_monitor 对raid进行监控
-* 3_keepalived_check 对keepalived的配置文件进行检查
-* 4_linux_iptables 配置iptables
-* 5_change_hostname 对hostname进行修改
-* 6_denyhosts 简单防止ssh暴力破解脚本
-* 7_audit_action linux操作审计
-* 8_rm 开启 linux 回收站
-* 9_screen 开启 screen 状态栏
+* 01_parted_mkfs 批量对硬盘进行分区和格式化
+* 02_raid_monitor 对raid进行监控
+* 03_keepalived_check 对keepalived的配置文件进行检查
+* 04_linux_iptables 配置iptables
+* 05_change_hostname 对hostname进行修改
+* 06_denyhosts 简单防止ssh暴力破解脚本
+* 07_audit_action linux操作审计
+* 08_rm 开启 linux 回收站
+* 09_screen 开启 screen 状态栏
+* 10_rebuild_centos 构建 centos 系统程序
+* 11_shell_common shell 相关模板
+
+## 相关项目
+
+> * [shell_menu](https://github.com/BillWang139967/shell_menu)
+> * [op_practice_code](https://github.com/BillWang139967/op_practice_code)
 
 ## 参加步骤
 
