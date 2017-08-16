@@ -20,7 +20,7 @@
 
 下载方式
 ```
-#curl -o denyhosts.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/6_denyhosts/denyhosts.sh
+#curl -o denyhosts.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/06_denyhosts/denyhosts.sh
 ```
 
 (2)DenyHosts
@@ -69,6 +69,6 @@ sh login_ip.sh
 ```
 下载方法
 ```
-#curl -o login.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/6_denyhosts/login.sh
-#curl -o login_ip.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/6_denyhosts/login_ip.sh
+#curl -o login.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/06_denyhosts/login.sh
+#curl -o login_ip.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/06_denyhosts/login_ip.sh
 ```
