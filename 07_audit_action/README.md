@@ -1,8 +1,9 @@
 ## 使用[PROMPT_COMMAND]变量 实现审计操作行为功能
 
-下载方式
+### 安装
 ```
-#curl -o audit_action.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/7_audit_action/audit_action.sh
+#curl -o audit_action.sh https://raw.githubusercontent.com/BillWang139967/linux_tools/master/07_audit_action/audit_action.sh
+#bash audit_action.sh
 ```
 ### 提示
 
@@ -15,4 +16,6 @@ chmod 777 /var/log/Command_history.log
 
 然后对日志文件进行删除操作
 
+### 相关
 
+[ssh_menu](https://github.com/BillWang139967/shell_menu)
