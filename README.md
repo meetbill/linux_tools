@@ -10,7 +10,7 @@
 * [08_rm](./08_rm/) 开启 linux 回收站
 * [09_screen](./09_screen/) 开启 screen 状态栏
 * [10_rebuild_centos](./10_rebuild_centos/) 构建 centos 系统程序
-* [11_shell_common shell](./11_shell_common/) 相关模板
+* [11_shell_common](./11_shell_common/) 相关模板
 * [12_wssh](./12_wssh/) 对某台远程机器执行多条命令并将执行信息输出到本地
 
 ## 相关项目
