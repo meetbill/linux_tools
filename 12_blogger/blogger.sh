@@ -1,11 +1,11 @@
 #!/bin/bash
-#########################################
-#Function:    
-#Usage:       
-#Author:      wangbin
-#Company:     
-#Version:     1.2
-#########################################
+#########################################################################
+# File Name: log.sh
+# Author: meetbill
+# mail: meetbill@163.com
+# Created Time: 2016-10-24 17:45:41
+# version: 1.4
+#########################################################################
 
 #	_debug_=10    #测试是否正确使用
 #	_info_=20     #输出程序信息
@@ -65,9 +65,7 @@ function Logit()
                 _TMP_LOG_LEVEL_NAME=_crit_;;
         	*)
                 _TMP_LOG_LEVEL_NUM=255
-                _TMP_LOG_LEVEL_NAME=wronglevel
-                echo "arguments error"
-                exit 255;;
+                _TMP_LOG_LEVEL_NAME=wronglevel;;
 		esac
 
 		echo ${_TMP_LOG_LEVEL_NUM} ${_TMP_LOG_LEVEL_NAME}
@@ -81,7 +79,7 @@ function Logit()
 	#decide whether to dispaly it or not
 	#if the global _LOG_LEVEL config level is less then user configed level
 	#then display it
-
+    
 	if [ "${_LOG_LEVEL_NUM}" -le "${_F_LOG_LEVEL_NUM}" ]
 	then
 		if [ "${_F_LOG_LEVEL_NUM}" = "30" ]
@@ -95,16 +93,12 @@ function Logit()
 		then
 			echo -n "${DATE_CUR} LOG_LEVEL[${_F_LOG_LEVEL_NAME}]:" 2>&1 >> ${g_LOG_DEBUG}
         	echo "$2" 2>&1 >> ${g_LOG_DEBUG}
-			#we can execute $2 as a function directly.
 		else
 			echo -n "${DATE_CUR} LOG_LEVEL[${_F_LOG_LEVEL_NAME}]:" 2>&1 | tee -a ${g_LOG_GRADE}
         	echo "$2" 2>&1 | tee -a ${g_LOG_GRADE}
-			#we can execute $2 as a function directly.
-			#        $2
 		fi
 	fi
 }
-
 #}}}
 #{{{Help
 function Help(){
@@ -125,3 +119,10 @@ function Test(){
 #}}}
 
 #Test
+
+if [[ $# != 2 ]]
+then
+    echo "usage:$0 10/20/30/40/50/60 'msg'"
+else
+    Logit $1 $2
+fi
