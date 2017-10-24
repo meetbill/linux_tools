@@ -4,7 +4,7 @@
 # Author: meetbill
 # mail: meetbill@163.com
 # Created Time: 2016-10-24 17:45:41
-# version: 1.4
+# version: 1.5
 #########################################################################
 
 #	_debug_=10    #测试是否正确使用
@@ -92,10 +92,10 @@ function Logit()
 		if [  "${_F_LOG_LEVEL_NUM}" = "10" ]
 		then
 			echo -n "${DATE_CUR} LOG_LEVEL[${_F_LOG_LEVEL_NAME}]:" 2>&1 >> ${g_LOG_DEBUG}
-        	echo "$2" 2>&1 >> ${g_LOG_DEBUG}
+        	echo "$_MSG_INFO" 2>&1 >> ${g_LOG_DEBUG}
 		else
 			echo -n "${DATE_CUR} LOG_LEVEL[${_F_LOG_LEVEL_NAME}]:" 2>&1 | tee -a ${g_LOG_GRADE}
-        	echo "$2" 2>&1 | tee -a ${g_LOG_GRADE}
+        	echo "$_MSG_INFO" 2>&1 | tee -a ${g_LOG_GRADE}
 		fi
 	fi
 }
@@ -124,5 +124,6 @@ if [[ $# != 2 ]]
 then
     echo "usage:$0 10/20/30/40/50/60 'msg'"
 else
-    Logit $1 $2
+    _MSG_INFO=$2
+    Logit $1
 fi
