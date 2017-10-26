@@ -4,7 +4,7 @@
 # Author: meetbill
 # mail: meetbill@163.com
 # Created Time: 2016-10-24 17:45:41
-# version: 1.5
+# version: 1.6
 #########################################################################
 
 #	_debug_=10    #测试是否正确使用
@@ -15,7 +15,7 @@
 #	_crit_=60
 
 g_LOG_GRADE=/tmp/SHELLWHEEL_grade.log
-g_LOG_DEBUG=/tmp/SHELLWHEEL_debug.log
+g_LOG_DEBUG=/tmp/SHELLWHEEL_grade.log
 
 #-----------------------------------------------------
 #debug的提示等级
@@ -50,22 +50,28 @@ function Logit()
                 _TMP_LOG_LEVEL_NAME=_debug_;;
     	    _info_ | 20 )
                 _TMP_LOG_LEVEL_NUM=20
-                _TMP_LOG_LEVEL_NAME=_info_;;
+                # green
+                _TMP_LOG_LEVEL_NAME="\033[42;37m_info_\033[0m";;
         	_notice_ | 30 )
+                # yellow
                 _TMP_LOG_LEVEL_NUM=30
-                _TMP_LOG_LEVEL_NAME=_notice_;;
+                _TMP_LOG_LEVEL_NAME="\033[43;37m_notice_\033[0m";;
        		_warn_ | 40)
+                # yellow
                 _TMP_LOG_LEVEL_NUM=40
-                _TMP_LOG_LEVEL_NAME=_warn_;;
+                _TMP_LOG_LEVEL_NAME="\033[43;37m_warn_\033[0m";;
         	_error_ | 50 )
+                # red
                 _TMP_LOG_LEVEL_NUM=50
-                _TMP_LOG_LEVEL_NAME=_error_;;
+                _TMP_LOG_LEVEL_NAME="\033[41;37m_error_\033[0m";;
         	_crit_ | 60 )
+                # red
                 _TMP_LOG_LEVEL_NUM=60
-                _TMP_LOG_LEVEL_NAME=_crit_;;
+                _TMP_LOG_LEVEL_NAME="\033[41;37m_crit_\033[0m";;
         	*)
+                # blue
                 _TMP_LOG_LEVEL_NUM=255
-                _TMP_LOG_LEVEL_NAME=wronglevel;;
+                _TMP_LOG_LEVEL_NAME="\033[44;37mwronglevel\033[0m";;
 		esac
 
 		echo ${_TMP_LOG_LEVEL_NUM} ${_TMP_LOG_LEVEL_NAME}
@@ -91,11 +97,11 @@ function Logit()
 		DATE_CUR=`date +%F" "%H:%M`
 		if [  "${_F_LOG_LEVEL_NUM}" = "10" ]
 		then
-			echo -n "${DATE_CUR} LOG_LEVEL[${_F_LOG_LEVEL_NAME}]:" 2>&1 >> ${g_LOG_DEBUG}
-        	echo "$_MSG_INFO" 2>&1 >> ${g_LOG_DEBUG}
+			echo -ne "${DATE_CUR} LOG_LEVEL[${_F_LOG_LEVEL_NAME}]:" 2>&1 >> ${g_LOG_DEBUG}
+        	echo -e  "$_MSG_INFO" 2>&1 >> ${g_LOG_DEBUG}
 		else
-			echo -n "${DATE_CUR} LOG_LEVEL[${_F_LOG_LEVEL_NAME}]:" 2>&1 | tee -a ${g_LOG_GRADE}
-        	echo "$_MSG_INFO" 2>&1 | tee -a ${g_LOG_GRADE}
+			echo -ne "${DATE_CUR} LOG_LEVEL[${_F_LOG_LEVEL_NAME}]:" 2>&1 | tee -a ${g_LOG_GRADE}
+        	echo -e  "$_MSG_INFO" 2>&1 | tee -a ${g_LOG_GRADE}
 		fi
 	fi
 }

@@ -19,3 +19,6 @@ bash ./blogger.sh 20 "ceshi"
 #	_error_=50
 #	_crit_=60
 ```
+## version 
+
+v1.6:增加输出颜色 
