@@ -14,8 +14,8 @@
 #	_error_=50
 #	_crit_=60
 
-g_LOG_GRADE=/tmp/SHELLWHEEL_grade.log
-g_LOG_DEBUG=/tmp/SHELLWHEEL_grade.log
+g_LOG_GRADE=/tmp/blogger_grade.log
+g_LOG_DEBUG=/tmp/blogger_grade_debug.log
 
 #-----------------------------------------------------
 #debug的提示等级
