@@ -25,6 +25,12 @@ fun_will_succed()
     return 0
 }
 
+fun_sub_will_fail()
+{
+    jjjjj
+    return 0
+}
+
 #命令或者函数产生的每一个错误都将产生一个ERR伪信号
 #这里执行trap命令是希望通过函数ERRTRAP扑捉这个ERR伪信号
 trap 'ERRTRAP $LINENO' ERR 
@@ -37,5 +43,8 @@ fun_will_succed
 
 #模拟一个失败了的函数
 fun_will_fail
+
+#模拟一个失败了的子函数 ,需要执行脚本的时候通过 -E 参数进行捕获子程序的 ERR
+fun_sub_will_fail
 
 exit 0
