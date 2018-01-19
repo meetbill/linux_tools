@@ -1,17 +1,17 @@
 # linux_tools
 
-* [01_parted_mkfs](./01_parted_mkfs/) 批量对硬盘进行分区和格式化
-* [02_raid_monitor](./02_raid_monitor/) 对 raid 进行监控
-* [03_keepalived_check](./03_keepalived_check/) 对 keepalived 的配置文件进行检查
-* [04_linux_iptables](./04_linux_iptables/) 配置 iptables
-* [05_change_hostname](./05_change_hostname/) 对 hostname 进行修改
-* [06_denyhosts](./06_denyhosts/) 简单防止 ssh 暴力破解脚本
-* [07_audit_action](./07_audit_action/) linux 操作审计
-* [08_rm](./08_rm/) 开启 linux 回收站
-* [09_screen](./09_screen/) 开启 screen 状态栏
-* [10_rebuild_centos](./10_rebuild_centos/) 构建 centos 系统程序
-* [11_shell_common](./11_shell_common/) 相关模板
-* [12_blogger](./12_blogger/) 记录 shell 运行日志
+> * [01_parted_mkfs](./01_parted_mkfs/) 批量对硬盘进行分区和格式化
+> * [02_raid_monitor](./02_raid_monitor/) 对 raid 进行监控
+> * [03_keepalived_check](./03_keepalived_check/) 对 keepalived 的配置文件进行检查
+> * [04_linux_iptables](./04_linux_iptables/) 配置 iptables
+> * [05_change_hostname](./05_change_hostname/) 对 hostname 进行修改
+> * [06_denyhosts](./06_denyhosts/) 简单防止 ssh 暴力破解脚本
+> * [07_audit_action](./07_audit_action/) linux 操作审计
+> * [08_rm](./08_rm/) 开启 linux 回收站
+> * [09_screen](./09_screen/) 开启 screen 状态栏
+> * [10_rebuild_centos](./10_rebuild_centos/) 构建 centos 系统程序
+> * [11_shell_common](./11_shell_common/) 相关模板
+> * [12_blogger](./12_blogger/) 记录 shell 运行日志
 
 ## 相关项目
 
