@@ -4,30 +4,34 @@
 # Author: meetbill
 # mail: meetbill@163.com
 # Created Time: 2018-04-27 10:36:55
+# Update  Time: 2018-07-02 16:02:33
 #########################################################################
 
+CUR_DIR=$(cd `dirname $0`; pwd)
 DISP_NAME="cherry_app"
 MAIN_FILE="sleep 120"
+MAIN_FILE_current=${MAIN_FILE}
 STDOUT="./__stdout"
 # Consts
 RED='\e[1;91m'
 GREN='\e[1;92m'
 WITE='\e[1;97m'
 NC='\e[0m'
+VERSION="1.0.0.2"
 
 # Global vailables
 PROC_COUNT="0"
 function count_proc()
 {
-    PROC_COUNT=$(ps -ef | grep "$MAIN_FILE" | grep -vc grep)
+    PROC_COUNT=$(ps -ef | grep "${MAIN_FILE_current}" | grep -vc grep)
 }
 function list_proc()
 {
-    ps -ef | grep -v grep | grep --color "$MAIN_FILE"
+    ps -ef | grep -v grep | grep --color "${MAIN_FILE_current}"
 }
 function list_proc_pids()
 {
-    ps -ef | grep "$MAIN_FILE" | grep -v grep | awk '{print $2}'
+    ps -ef | grep "${MAIN_FILE_current}" | grep -v grep | awk '{print $2}'
 }
 
 function start_procs()
@@ -79,6 +83,11 @@ function status_procs()
     echo -e ${RED}${PROC_COUNT}${NC} "$DISP_NAME processes runing."        
 }
 
+function version_script()
+{
+    echo "[version]:${VERSION}"
+}
+
 MODE=${1}
 case ${MODE} in
     "start")
@@ -97,14 +106,17 @@ case ${MODE} in
     "status")
         status_procs
         ;;
-    
+    "version")
+        version_script
+        ;;
     *)
         # usage
         echo -e "\nUsage: $0 {start|stop|restart|status}"
         echo -e ${WITE}" start   "${NC}"Start $DISP_NAME processes."
         echo -e ${WITE}" stop    "${NC}"Kill all $DISP_NAME processes."
         echo -e ${WITE}" restart "${NC}"Kill all $DISP_NAME processes and start again."
-        echo -e ${WITE}" status  "${NC}"Show $DISP_NAME processes status.\n"
+        echo -e ${WITE}" status  "${NC}"Show $DISP_NAME processes status."
+        echo -e ${WITE}" version "${NC}"Show $0 script version.\n"
         exit 1
         ;;
 esac

@@ -24,14 +24,14 @@
 
 ## 相关项目
 
-> * [shell_menu](https://github.com/BillWang139967/shell_menu)
-> * [op_practice_code](https://github.com/BillWang139967/op_practice_code)
+> * [shell_menu](https://github.com/meetbill/shell_menu)
+> * [op_practice_code](https://github.com/meetbill/op_practice_code)
 
 ## 参加步骤
 
 * 在 GitHub 上 `fork` 到自己的仓库，然后 `clone` 到本地，并设置用户信息。
 ```
-$ git clone https://github.com/BillWang139967/linux_tools.git
+$ git clone https://github.com/meetbill/linux_tools.git
 $ cd linux_tools
 $ git config user.name "yourname"
 $ git config user.email "your email"
@@ -45,7 +45,7 @@ $ git push
 * 在 GitHub 网站上提交 pull request。
 * 定期使用项目仓库内容更新自己仓库内容。
 ```
-$ git remote add upstream https://github.com/BillWang139967/linux_tools.git
+$ git remote add upstream https://github.com/meetbill/linux_tools.git
 $ git fetch upstream
 $ git checkout master
 $ git rebase upstream/master
