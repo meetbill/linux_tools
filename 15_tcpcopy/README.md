@@ -26,3 +26,18 @@ Usage: run.sh {start|stop|restart|status}
  cept_stop    dest_ip_port Kill all  processes.
  cept_status  dest_ip_port Show  processes status.
 ```
+## 附录
+最后的目录结构如下
+```
+├── run.sh
+└── tcp_copy
+    ├── bin
+    ├── cept.sh
+    ├── conf
+    ├── copy.sh
+    ├── include
+    ├── lib
+    ├── logs
+    ├── sbin
+    ├── share
+```

@@ -138,7 +138,7 @@ case ${MODE} in
     *)
         # usage
         echo -e "\nUsage: $0 {start|stop|restart|status}"
-        echo -e ${WITE}" start  source_ip_port dest_ip_port"${NC}"Start $DISP_NAME processes."
+        echo -e ${WITE}" start  source_ip_port dest_ip_port "${NC}"Start $DISP_NAME processes."
         echo -e ${WITE}" copy_stop    source_ip_port "${NC}"Kill all $DISP_NAME processes."
         echo -e ${WITE}" copy_status  source_ip_port "${NC}"Show $DISP_NAME processes status."
         echo -e ${WITE}" cept_stop    dest_ip_port "${NC}"Kill all $DISP_NAME processes."
