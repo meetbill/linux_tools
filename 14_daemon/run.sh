@@ -8,16 +8,17 @@
 #########################################################################
 
 CUR_DIR=$(cd `dirname $0`; pwd)
+cd ${CUR_DIR}
 DISP_NAME="cherry_app"
 MAIN_FILE="sleep 120"
 MAIN_FILE_current=${MAIN_FILE}
-STDOUT="./__stdout"
+STDOUT="${CUR_DIR}/__stdout"
 # Consts
 RED='\e[1;91m'
 GREN='\e[1;92m'
 WITE='\e[1;97m'
 NC='\e[0m'
-VERSION="1.0.0.2"
+VERSION="1.0.0.3"
 
 # Global vailables
 PROC_COUNT="0"
