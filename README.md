@@ -9,7 +9,7 @@
 >   * [mount_file](./13_mount_file) 将文件进行挂载
 > * 监控
 >   * [raid_monitor](./02_raid_monitor/) 对 raid 进行监控
-> * 配置 
+> * 配置
 >   * [keepalived_check](./03_keepalived_check/) 对 keepalived 的配置文件进行检查
 >   * [change_hostname](./05_change_hostname/) 对 hostname 进行修改
 > * 易用
@@ -22,6 +22,7 @@
 >   * [tcpcopy 管理工具](./15_tcpcopy)
 > * 日志
 >   * [blogger](./12_blogger/) 记录 shell 运行日志
+>   * [truncate](./16_truncate) 使用 truncate 安全地删除大文件
 
 ## 相关项目
 
