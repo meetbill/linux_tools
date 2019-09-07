@@ -23,6 +23,7 @@
 > * 日志
 >   * [blogger](./12_blogger/) 记录 shell 运行日志
 >   * [truncate](./16_truncate) 使用 truncate 安全地删除大文件
+>   * [logrotate](./17_logrotate) 通用日志切割和清理，按照时间切割
 
 ## 相关项目
 
