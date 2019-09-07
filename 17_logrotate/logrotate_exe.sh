@@ -1,6 +1,6 @@
 #!/bin/bash
 #########################################################################
-# File Name: logrotate_hourly.sh
+# File Name: logrotate_exe.sh
 # Author: meetbill
 # mail: meetbill@163.com
 # Created Time: 2019-09-07 14:27:19

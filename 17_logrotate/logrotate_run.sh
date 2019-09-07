@@ -9,8 +9,8 @@
 
 CUR_DIR=$(cd `dirname $0`; pwd)
 cd ${CUR_DIR}
-DISP_NAME="cherry_app"
-MAIN_FILE="sleep 120"
+DISP_NAME="logrotate"
+MAIN_FILE="bash ${CUR_DIR}/logrotate_loop.sh"
 MAIN_FILE_current=${MAIN_FILE}
 STDOUT="${CUR_DIR}/__stdout"
 # Consts
