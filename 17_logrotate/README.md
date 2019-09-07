@@ -30,14 +30,14 @@ tags:
 ### 2.1 启动管理
 
 ```
-sh logrotate_run.sh
+$sh log_control.sh
 
-Usage: logrotate_run.sh {start|stop|restart|status}
+Usage: log_control.sh {start|stop|restart|status}
   start   Start logrotate processes.
   stop    Kill all logrotate processes.
   restart Kill all logrotate processes and start again.
   status  Show logrotate processes status.
-  version Show logrotate_run.sh script version.
+  version Show log_control.sh script version.
 ```
 
 ### 2.2 配置管理
@@ -59,7 +59,7 @@ log_cut                                        # 日志切割和清理
 
 > 启动日志
 ```
-__stdout
+log/__logrotate_stdout
 ```
 > 运行日志
 ```
