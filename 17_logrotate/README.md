@@ -1,9 +1,9 @@
 ---
 layout: post
-title:
+title: shell logrotate
 subtitle:
 date: 2019-09-07 16:31:21
-category:
+category: 日志切割和清理
 author: meetbill
 tags:
    -
@@ -49,8 +49,8 @@ APP_HOME=${CUR_DIR}/..
 LOG_PATH="${APP_HOME}/log"
 
 #任务
-LOG_KEEP_TIME="7"                              # 保存天数                                     |~
-LOG_PATH="${NGINX_LOG_PATH}/nginx.access_log"  # 日志路径                                     |~
+LOG_KEEP_TIME="7"                              # 保存天数
+LOG_PATH="${NGINX_LOG_PATH}/nginx.access_log"  # 日志路径
 LOG_BACK_DIR=$(dirname ${LOG_PATH})            # 备份日志的路径
 END_CMD=""                                     # 需要执行的额外命令
 log_cut                                        # 日志切割和清理
