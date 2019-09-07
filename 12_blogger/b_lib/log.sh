@@ -23,104 +23,71 @@ LOG_LEVEL_OFF=9000
 # -1 所有日志
 # 
 # 默认不输出。要打开debug，可以在调用时export这个变量
-if [ x$LOG_LEVEL = "x" ];then
+if [[ -z "$LOG_LEVEL" ]];then
 	LOG_LEVEL=$LOG_LEVEL_ALL
 fi
 # 日志文件目录
-if [ x$SIMPLE_LOG_DIR = "x" ];then
+if [[ -z "$SIMPLE_LOG_DIR" ]];then
 	SIMPLE_LOG_DIR=/tmp/slog # 避免不同的用户部署时公用文件
 fi
-
-
 
 # # 获取logger名称
 loggerName=$0
 
-
-
-
 # 根据日期获取当天日志名称
-getLogFile()
-{
+function get_log_file() {
 	if [ ! -e $SIMPLE_LOG_DIR ];then
 		mkdir -p $SIMPLE_LOG_DIR
-	fi 
-	local logDate=$(date +"%Y%m%d")
-	local todayLogFile=$SIMPLE_LOG_DIR/log_${logDate}.log
-	if [ ! -e $todayLogFile ];then
-		touch $todayLogFile
-	fi 
-	echo $todayLogFile
+	fi
+	local log_date=$(date +"%Y%m%d")
+	local today_log_file=$SIMPLE_LOG_DIR/log_${log_date}.log
+	if [ ! -e $today_log_file ];then
+		touch $today_log_file
+	fi
+	echo $today_log_file
 }
 
-
-
 # 抛异常
-throw ()
-{
+function throw() {
 	if [ $# -ne 0 ];then
-		myEchoError "$*"
-		logError "$*"
-	fi  
+		my_echo_error "$*"
+		log_error "$*"
+    fi
   	exit 1
 }
 
 # 代替echo，输出到标准输出
-myEcho()
-{
+function my_echo() {
 	echo "$*"
-	echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (ECHO) '"$*" >> `getLogFile`
-
+	echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (ECHO) '"$*" >> `get_log_file`
 }
 
 # 代替echo，输出到标准错误输出
-myEchoError()
-{
+function my_echo_error() {
 	echo "(ERROR)" "$*" >&2
-	echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (ECHO_ERROR) '"$*" >>  `getLogFile`
+	echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (ECHO_ERROR) '"$*" >>  `get_log_file`
 }
 
-
-
-
-
-
-logDebug()
-{	
+function log_debug() {
 	if [ $LOG_LEVEL -le $LOG_LEVEL_DEBUG ];then
-		echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (DEBUG) '"$*" >>  `getLogFile`
+		echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (DEBUG) '"$*" >>  `get_log_file`
 	fi
 }
 
-
-
-logInfo()
-{
-	
+function log_info() {
 	if [ $LOG_LEVEL -le $LOG_LEVEL_INFO ];then
-		echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (INFO) '"$*" >>  `getLogFile`
+		echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (INFO) '"$*" >>  `get_log_file`
 	fi
 }
 
-logWarn()
-{
-
+function log_warn() {
 	if [ $LOG_LEVEL -le $LOG_LEVEL_WARN ];then
-		echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (WARN) '"$*" >>  `getLogFile`
+		echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (WARN) '"$*" >>  `get_log_file`
 	fi
 }
 
-
-logError()
-{
-	
+function log_error() {
 	if [ $LOG_LEVEL -le $LOG_LEVEL_ERROR ];then
-		echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (ERROR) '"$*" >>  `getLogFile`
+		echo `date +%Y-%m-%d\ %H:%M:%S` [$loggerName]' (ERROR) '"$*" >>  `get_log_file`
 	fi
 }
-
-
-
-#
-##############################
-

@@ -12,13 +12,13 @@ source ./b_lib/log.sh
 export SIMPLE_LOG_DIR=./log
 
 # 调用方法
-logInfo [LINE]:${LINENO} hello, world
-logDebug "[LINE]:${LINENO} hello, logDebug"
-logInfo "[LINE]:${LINENO} hello, logInfo"
-logWarn "[LINE]:${LINENO} hello, logWarn"
-logError "[LINE]:${LINENO} hello, logError"
+log_info [LINE]:${LINENO} hello, world
+log_debug "[LINE]:${LINENO} hello, log_debug"
+log_info "[LINE]:${LINENO} hello, log_info"
+log_warn "[LINE]:${LINENO} hello, log_warn"
+log_error "[LINE]:${LINENO} hello, log_error"
 
-myEcho "[LINE]:${LINENO} hello, myEcho"
-myEchoError "[LINE]:${LINENO} hello, myEchoError"
+my_echo "[LINE]:${LINENO} hello, my_echo"
+my_echo_error "[LINE]:${LINENO} hello, my_echo_error"
 
 throw "[LINE]:${LINENO} Arguments Number Error"
