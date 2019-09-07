@@ -12,6 +12,7 @@ cd ${CUR_DIR}
 DISP_NAME="logrotate"
 MAIN_FILE="bash ${CUR_DIR}/logrotate_loop.sh"
 MAIN_FILE_current=${MAIN_FILE}
+mkdir -p ${CUR_DIR}/log
 STDOUT="${CUR_DIR}/log/__logrotate_stdout"
 # Consts
 RED='\033[1;91m'
