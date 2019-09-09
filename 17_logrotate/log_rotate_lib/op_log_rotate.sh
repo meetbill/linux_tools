@@ -39,13 +39,29 @@ function log_cut(){
         fi
     fi
 
-    #clear log
-    find ./ -type f -name "${log_file}.20*" -mtime +"${LOG_KEEP_TIME}" |xargs rm -f &
     #exec reload cmd
     if [[ -n "${END_CMD}" ]];then
         log_info "END_CMD=\"${END_CMD}\",start exec..."
         ${END_CMD}
     fi
+
+    #clear log
+    for old_log_file in `find ./ -type f -name "${log_file}.20*" -mtime +"${LOG_KEEP_TIME}" `
+    do
+        old_log_file_size=`du -k ${old_log_file}|awk '{print $1}'`
+        # 日志超过 200G,则使用 truncate 进行逐渐删除
+        if [[ ${old_log_file_size} -gt 200000000 ]];then
+            for i in `seq 200 -10 10`
+            do
+               truncate -s ${i}G ${old_log_file}
+               sleep 10
+            done
+            log_info "[${NOW}] [old_log_file:$old_log_file] [old_log_size:${old_log_file_size}] truncate success!!!!"
+        fi
+        [[ -f ${old_log_file}  ]] && rm -rf ${old_log_file}
+        log_info "[${NOW}] [old_log_file:$old_log_file] [old_log_size:${old_log_file_size}] rm success!!!!"
+        sleep 10
+    done
     log_info "[${NOW}] [log_file:$LOG_PATH] log_cut exec success!!!!"
 }
 
