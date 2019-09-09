@@ -19,6 +19,8 @@ tags:
     * [2.1 启动管理](#21-启动管理)
     * [2.2 配置管理](#22-配置管理)
     * [2.3 logrotate 日志](#23-logrotate-日志)
+* [3 番外](#3-番外)
+    * [find 中的 mtime 参数](#find-中的-mtime-参数)
 
 <!-- vim-markdown-toc -->
 
@@ -66,3 +68,23 @@ log/__logrotate_stdout
 默认存放在此目录的 log 目录
 ```
 
+## 3 番外
+
+### find 中的 mtime 参数
+
+> find . –mtime n
+```
+File waslast modified n*24 hours ago.
+最后一次修改发生在距离当前时间n*24小时至(n+1)*24 小时
+```
+
+> find . –mtime +n
+
+```
+最后一次修改发生在n+1天以前，距离当前时间为(n+1)*24小时或者更早
+```
+
+> find . –mtime –n
+```
+最后一次修改发生在n天以内，距离当前时间为n*24小时以内
+```

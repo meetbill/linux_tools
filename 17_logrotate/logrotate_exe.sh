@@ -22,14 +22,16 @@ cd ${CUR_DIR}
 
 EXE_LOG=${CUR_DIR}/log
 export SIMPLE_LOG_DIR=${EXE_LOG}
+source ${CUR_DIR}/log_rotate_lib/log.sh
+source ${CUR_DIR}/log_rotate_lib/op_log_rotate.sh
 
-APP_HOME=${CUR_DIR}/..
+# 设置 APP_HOME 为当前目录的父目录
+APP_HOME=$(dirname $CUR_DIR)
+log_info "[APP_HOME:${APP_HOME}] start -----------------------------------------------------"
 # NGINX_PID_PATH=${APP_HOME}/log
 ADAPTER_LOG_PATH="${APP_HOME}/log"
 NUTCRACKER_LOG_PATH="${APP_HOME}/log"
 
-source ${CUR_DIR}/log_rotate_lib/log.sh
-source ${CUR_DIR}/log_rotate_lib/op_log_rotate.sh
 
 if [[ $? -ne 0 ]];then
     echo "[`date +"%Y-%m-%d %H:%M:%S"`] source ./op_log_rotate.sh fail !"
@@ -56,14 +58,14 @@ LOG_PATH="${ADAPTER_LOG_PATH}/demo.log"
 LOG_BACK_DIR=$(dirname ${LOG_PATH})
 END_CMD=""
 log_cut
-sleep 10
+
 #task 2
 LOG_KEEP_TIME="2"
 LOG_PATH="${ADAPTER_LOG_PATH}/demo.log.wf"
 LOG_BACK_DIR=$(dirname ${LOG_PATH})
 END_CMD=""
+
 log_cut
-sleep 10
 #task 3
 LOG_KEEP_TIME="2"
 LOG_PATH="${NUTCRACKER_LOG_PATH}/nutcracker.log"
