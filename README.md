@@ -54,3 +54,9 @@ $ git checkout master
 $ git rebase upstream/master
 $ git push -f origin master
 ```
+
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/meetbill/linux_tools.svg)](https://starchart.cc/meetbill/linux_tools)
+
