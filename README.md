@@ -15,6 +15,7 @@
 > * 易用
 >   * [rm](./08_rm/) 开启 linux 回收站
 >   * [screen](./09_screen/) 开启 screen 状态栏
+>   * [opmv](./18_opmv/) 类似 Linux 回收站，将文件移动到特定备份目录
 > * 工具
 >   * [rebuild_centos](./10_rebuild_centos/) 构建 centos 系统程序
 >   * [shell_common](./11_shell_common/) 相关模板

@@ -1,0 +1,260 @@
+#!/bin/bash
+#===============================================================================
+#
+#          FILE:  opmv
+#
+#         USAGE:  sh opmv
+#
+#   DESCRIPTION: This program is used for backup current file
+#
+#       OPTIONS:  ---
+#  REQUIREMENTS:  ---
+#          BUGS:  ---
+#         NOTES:  ---
+#        AUTHOR:  meetbill@163.com
+#       VERSION:  2.0
+#       CREATED:  2020/04/15 16:33:51 PM CST
+#      REVISION:  ---
+#===============================================================================
+
+cfont()
+{
+while (($#!=0))
+do
+        case $1 in
+                -b)
+                        echo -ne " ";
+                ;;
+                -t)
+                        echo -ne "\t";
+                ;;
+                -n)     echo -ne "\n";
+                ;;
+                -black)
+                        echo -ne "\033[30m";
+                ;;
+                -red)
+                        echo -ne "\033[31m";
+                ;;
+                -green)
+                        echo -ne "\033[32m";
+                ;;
+                -yellow)
+                        echo -ne "\033[33m";
+                ;;
+                -blue)
+                        echo -ne "\033[34m";
+                ;;
+                -purple)
+                        echo -ne "\033[35m";
+                ;;
+                -cyan)
+                        echo -ne "\033[36m";
+                ;;
+                -lred)
+                        echo -ne "\033[1;31m";
+                ;;
+                -lblue)
+                        echo -ne "\033[1;34m";
+                ;;
+                -dblue)
+                        echo -ne "\033[1;36m";
+                ;;
+                -lwhite)
+                        echo -ne "\033[1;37m";
+                ;;
+                -white|-gray) echo -ne "\033[37m";
+                ;;
+                -reset)
+                        echo -ne "\033[0m";
+                ;;
+                -h|-help|--help)
+                        echo "Usage: cfont -color1 message1 -color2 message2 ...";
+                        echo "eg:       cfont -red [ -blue message1 message2 -red ]";
+                ;;
+                *)
+                echo -ne "$1"
+                ;;
+        esac
+        shift
+done
+}
+
+#PATHBAK=$HOME/$USER.bak
+PWDPATH=`pwd`
+USER_INPUT_LIST="$*"
+if [ -z "$USER_INPUT_LIST" ]
+then
+	cfont -red "Usage: $0 xx.conf" -n -reset
+        exit 1
+
+else
+	WORK_DIR=$HOME
+	PATHBAK=$WORK_DIR/opdir/backup
+
+	DATETIME=$(date +%Y%m%d%H%M%S)
+
+#check the user input
+#######################################for -i
+nocreat="0"
+#######################################for -i
+	for USER_INPUT in $USER_INPUT_LIST
+	do
+
+#######################################for -i
+		if [ "$USER_INPUT" == "-i" ]
+		then
+			nocreat="1"
+			USER_INPUT_LIST=$(for itmp in $USER_INPUT_LIST; do if [ "$itmp" != "$USER_INPUT" ];then echo -n "$itmp ";fi ;done)
+			#USER_INPUT_LIST=$(echo "$USER_INPUT_LIST"|sed -e "s/$USER_INPUT//")
+#######################################for -i
+		else
+			[[ -f $USER_INPUT || -d $USER_INPUT ]]
+			if [ "$?" -ne "0" ]
+			then
+				echo "$USER_INPUT" is not a file or a dirctory!
+			#	USER_INPUT_LIST=$(echo "$USER_INPUT_LIST"|sed -e "s/$USER_INPUT//")
+			#	USER_INPUT_LIST=$(for itmp in "$USER_INPUT_LIST"; do echo -n "$itmp " |grep -v "$USER_INPUT";done)
+				USER_INPUT_LIST=$(for itmp in $USER_INPUT_LIST; do if [ "$itmp" != "$USER_INPUT" ];then echo -n "$itmp ";fi ;done)
+#				exit 1
+
+			fi
+		fi
+
+	done
+	if [ -z "$USER_INPUT_LIST" ]
+	then
+	        echo "Usage: $0 appui.conf"
+	        exit 1
+
+	fi
+	#pass the check above,then continue
+	for USER_INPUT in $USER_INPUT_LIST
+	do
+	#	echo $USER_INPUT
+		cfont -dblue "$USER_INPUT" -n -reset
+	#get file or dir name
+		BASENAME=$(basename $USER_INPUT)
+
+	#get absolute path name
+		FLAG_FILE=0
+		FLAG_DIR=0
+		if [ -f "$USER_INPUT" ]
+		then
+			DIRNAME=$(dirname $USER_INPUT)
+			FLAG_FILE=1
+		elif [ -d "$USER_INPUT" ]
+		then
+			DIRNAME="$USER_INPUT"
+			FLAG_DIR=1
+		else
+			DIRNAME=$(dirname $USER_INPUT)
+		fi
+
+		ADIRNAME=$(cd $DIRNAME;pwd;cd - &>/dev/null)
+
+	#gen the backup full path
+
+		BAKPATH=$PATHBAK/$(echo $ADIRNAME |awk 'BEGIN{FS="/";N=4;}{if(NF>=N){while (N<=NF){if(N==4){printf "%s.%s.%s/%s/","opmv",$N,"'$DATETIME'",$N} else {printf "%s/",$N;} N++}}else{printf "%s.%s.%s/%s/","opmv",$NF,"'$DATETIME'",$NF;}}')
+
+#######################################for -i
+		if [ "$nocreat" -eq "1" ]
+		then
+		BAKPATH=$PATHBAK/$(echo $ADIRNAME |awk 'BEGIN{FS="/";N=4;}{if(NF>=N){while (N<=NF){if(N==4){printf "%s.%s.%s/%s/","opmv",$N,"bak",$N} else {printf "%s/",$N;} N++}}else{printf "%s.%s.%s/%s/","opmv",$NF,"bak",$NF;}}')
+		fi
+#######################################for -i
+
+
+	#common used name , path
+		MOD_NAME=$(echo $ADIRNAME |awk 'BEGIN{FS="/"}{if(NF>=4){printf "%s",$4}else{printf "%s",$NF}}')
+		MOD_PATH=$(echo $ADIRNAME |awk 'BEGIN{FS="/";N=4;}{if(NF>=N){while (N<=NF) {printf "%s/",$N; N++}}else{printf "%s/",$NF}}')
+
+	#used for opdiff opmv etc. or easy reading
+
+		LNPATH1=$PATHBAK/opmv.$MOD_NAME.$DATETIME
+		LNPATH2=$PATHBAK/opmv.$MOD_NAME.bak
+
+	#	BAKPATHLN1=$PATHBAK/$(echo $ADIRNAME |awk 'BEGIN{FS="/";N=4;}{printf "%s.%s",$N,"'$DATETIME'";}')
+	#	BAKPATHLN2=$PATHBAK/$(echo $ADIRNAME |awk 'BEGIN{FS="/";N=4;}{printf "%s.bak",$N;}')
+
+
+#begin to cp files
+
+
+		if [ -f $BAKPATH/$BASENAME ]
+		then
+			mkdir -p $BAKPATH
+			cd $PATHBAK/
+
+			mv $BAKPATH/$BASENAME $BAKPATH/$BASENAME.$DATETIME
+		fi
+
+		if [ "$FLAG_FILE" -eq 1 ]
+		then
+			mkdir -p $BAKPATH
+			cd $PATHBAK/
+			SOURCE_FILE="$ADIRNAME/$BASENAME"
+			DEST_FILE="$BAKPATH/$BASENAME"
+		elif [ "$FLAG_DIR" -eq 1 ]
+		then
+			FLAG_NULL=$(ls $ADIRNAME 2>/dev/null|wc -l)
+			SOURCE_FILE="$ADIRNAME"
+			DEST_FILE=$(echo $BAKPATH |awk 'BEGIN{FS="/";N=1}{while (N<NF-1){printf "%s/",$N; N++}}')
+			mkdir -p $DEST_FILE
+			cd $DEST_FILE
+			#SOURCE_FILE="$ADIRNAME/*"
+			#DEST_FILE="$BAKPATH/"
+		fi
+			#cp -Lr -b --preserve=mode --preserve=ownership --preserve=timestamps $ADIRNAME/$BASENAME $BAKPATH/$BASENAME
+			#cp -Lr -b --preserve=mode --preserve=ownership --preserve=timestamps $ADIRNAME/* $BAKPATH/
+		mv $SOURCE_FILE $DEST_FILE
+
+		return=$?
+
+#######################################for -i
+		if [ "$nocreat" -eq "1" ]
+		then
+			nocreat="1"
+		else
+		rm -rf $LNPATH2
+		ln -sf $LNPATH1 $LNPATH2
+		let return+=$?
+		fi
+#######################################for -i
+
+		cd - &>/dev/null
+
+		if [ $return -eq "0" ]
+		then
+			if [ "$FLAG_FILE" -eq 1 ]
+			then
+				#SOURCE_FILE="$ADIRNAME/$BASENAME"
+				#DEST_FILE="$BAKPATH/$BASENAME"
+				#md5sum $BAKPATH/$BASENAME $LNPATH2/$MOD_PATH/$BASENAME
+				file_size=$(du -sk $BAKPATH/$BASENAME |awk '{print $1}')
+				if [ $file_size -lt 102400 ]
+				then
+					md5sum_source=$(md5sum $BAKPATH/$BASENAME |awk '{print $1}')
+					cfont -lwhite "$md5sum_source $BAKPATH/$BASENAME" -n -reset
+				else
+					size_source=$(du -sk $BAKPATH/$BASENAME|awk '{print $1}')
+					cfont -lwhite "$size_source $BAKPATH/$BASENAME" -n -reset
+				fi
+
+			#elif [ -d $BAKPATH/$BASENAME ]
+			elif [ "$FLAG_DIR" -eq 1 ]
+			then
+				#SOURCE_FILE="$ADIRNAME"
+				#DEST_FILE="$BAKPATH"
+				#size_source=$(du -sk $SOURCE_FILE|awk '{print $1}')
+				size_dest=$(du -sk $BAKPATH|awk '{print $1}')
+			#	du -sk $BAKPATH/$BASENAME
+				#size_source=$(du -sk $BAKPATH/$BASENAME|awk '{print $1}')
+				cfont -lwhite "$size_dest $BAKPATH" -n -reset
+			fi
+		else
+			cfont -red "mv $ADIRNAME/$BASENAME $BAKPATH/$BASENAME FAILED!!" -n -reset
+		fi
+
+		done
+fi
