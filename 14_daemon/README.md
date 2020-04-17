@@ -6,7 +6,8 @@
     * [1.2 远端执行耗时命令](#12-远端执行耗时命令)
 * [2 使用](#2-使用)
     * [2.1 修改文件](#21-修改文件)
-    * [2.1 使用](#21-使用)
+    * [2.2 使用](#22-使用)
+    * [2.3 外部调用此脚本查询进程状态](#23-外部调用此脚本查询进程状态)
 * [3 版本](#3-版本)
 
 <!-- vim-markdown-toc -->
@@ -30,7 +31,7 @@
 > * 将 run.sh 中 `MAIN_FILE="sleep 120"` 部分修改为 `MAIN_FILE= 执行的命令`
 > * 将 run.sh 中 `MAIN_FILE_current=${MAIN_FILE}` 检测进程是否存在的关键字（默认与 MAIN_FILE 变量相同）
 
-### 2.1 使用
+### 2.2 使用
 
 ```
 Usage: run.sh {start|stop|restart|status}
@@ -40,6 +41,18 @@ Usage: run.sh {start|stop|restart|status}
  status  Show cherry_app processes status.
  version Show run.sh script version.
 ```
+### 2.3 外部调用此脚本查询进程状态
+
+> status 输出的信息包含颜色，是隐藏字符
+```
+$sh run.sh status | cat -v
+^[[1;91m0^[[0m cherry_app processes runing.
+```
+> 查询方法
+```
+bash run.sh status | grep processes | grep m0  > /dev/null && echo ERR || echo OK
+```
+
 ## 3 版本
 
 > * 1.0.0.3 2019-06-13 『更新』启动脚本兼容绝对路径启动
